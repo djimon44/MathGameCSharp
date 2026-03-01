@@ -11,7 +11,7 @@ namespace MathGame.Models
         // Fields:
         public int OperandA { get; }
         public int OperandB { get; }
-        public Operation Operation {  get; }
+        public GameType Game {  get; }
         public int CorrectAnswer { get; }
         public int? PlayerAnswer { get; private set; } // ? means it can be null; private set means only changable within the class
 
@@ -27,11 +27,11 @@ namespace MathGame.Models
         
         
         // Constructor:
-        public MathQuestion(int operandA, int operandB, Operation operation)
+        public MathQuestion(int operandA, int operandB, GameType game)
         {
             OperandA = operandA;
             OperandB = operandB;
-            Operation = operation;
+            Game = game;
             CorrectAnswer = ComputeAnswer();
         }
 
@@ -43,18 +43,18 @@ namespace MathGame.Models
         }
 
         private int ComputeAnswer() {
-            switch (Operation) {
-                case Operation.ADDITION:
+            switch (Game) {
+                case GameType.Addition:
                     return OperandA + OperandB;
-                case Operation.SUBSTRACTION: 
+                case GameType.Substraction: 
                     return OperandA - OperandB;
-                case Operation.MULTIPLICATION:
+                case GameType.Multiplication:
                     return OperandA * OperandB;
-                case Operation.DIVISION:
+                case GameType.Division:
                     return OperandA / OperandB;
 
                 default:
-                    throw new InvalidOperationException("That operation is not supported.");
+                    throw new InvalidOperationException("Unknown Operation.");
             }
         }
     }

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace MathGame.Enums
 {
-    public enum Operation
+    public enum GameType
     {
-        ADDITION,
-        SUBSTRACTION,
-        MULTIPLICATION,
-        DIVISION
+        Addition,
+        Substraction,
+        Multiplication,
+        Division
            
     }
 }
