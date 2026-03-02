@@ -6,8 +6,8 @@ using System.Text;
 
 namespace MathGame.Interfaces
 {
-    internal interface GameEngineInterface
+    public interface IGameEngine
     {
-        GameSession Play(Operation operation);
+        GameSession Play(GameType game);
     }
 }

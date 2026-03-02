@@ -10,15 +10,15 @@ namespace MathGame.Models
     {
         // Fields:
         public DateTime PlayedOn { get; }
-        public Operation Operation { get; }
+        public GameType Game { get; }
         public int Score { get; }
         public int TotalQuestions { get; }
 
         // Constructor
-        public GameSession(Operation operation, int score, int  totalQuestions)
+        public GameSession(GameType game, int score, int  totalQuestions)
         {
             PlayedOn = DateTime.Now;
-            Operation = operation;
+            Game = game;
             Score = score;
             TotalQuestions = totalQuestions;
         }

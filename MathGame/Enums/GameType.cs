@@ -7,7 +7,7 @@ namespace MathGame.Enums
     public enum GameType
     {
         Addition,
-        Substraction,
+        Subtraction,
         Multiplication,
         Division
            

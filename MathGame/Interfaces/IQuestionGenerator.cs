@@ -7,8 +7,8 @@ using System.Text;
 
 namespace MathGame.Interfaces
 {
-    internal interface QuestionGeneratorInterface
+    public interface IQuestionGenerator
     {
-        MathQuestion Generate(Operation operation);
+        MathQuestion Generate(GameType game);
     }
 }

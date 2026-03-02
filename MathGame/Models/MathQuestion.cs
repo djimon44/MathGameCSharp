@@ -46,7 +46,7 @@ namespace MathGame.Models
             switch (Game) {
                 case GameType.Addition:
                     return OperandA + OperandB;
-                case GameType.Substraction: 
+                case GameType.Subtraction: 
                     return OperandA - OperandB;
                 case GameType.Multiplication:
                     return OperandA * OperandB;
