@@ -13,9 +13,12 @@ namespace MathGame.Services
 
         public MathQuestion Generate(GameType game)
         {
-            return game == GameType.Division
-                ? GenerateDivision()
-                : GenerateStandart(game);
+            if (game == GameType.Division)
+                return GenerateDivision();
+            else if (game == GameType.Multiplication)
+                return GenerateMultiplication();
+            else
+                return GenerateStandart(game);
         }
 
         private MathQuestion GenerateStandart(GameType game)
@@ -31,6 +34,14 @@ namespace MathGame.Services
             int quotient = _random.Next(1, 11);
             int dividend = divisor * quotient;
             return new MathQuestion(dividend, divisor, GameType.Division);
+        }
+
+        // Generate simpler multiplication in range 1-20
+        private MathQuestion GenerateMultiplication()
+        {
+            int multiplicant = _random.Next(1, 21);
+            int multiplier = _random.Next(1, 21);
+            return new MathQuestion(multiplicant, multiplier, GameType.Multiplication);
         }
     }
 }

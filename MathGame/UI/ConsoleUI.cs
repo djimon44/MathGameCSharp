@@ -26,6 +26,8 @@ namespace MathGame.UI
 
         public void DisplayQuestion(MathQuestion question, int number, int total)
         {
+            Console.Clear();
+            Console.WriteLine($"=== {question.Game} Game ===");
             Console.WriteLine($"\nQuestion [{number}/{total}]");
             Console.Write($"{question.OperandA} {OperationSymbol(question.Game)} {question.OperandB} = ");
         }
@@ -47,9 +49,19 @@ namespace MathGame.UI
         public void DisplayFeedback(bool correct, int correctAnswer = 0)
         {
             if (correct)
+            {
                 Console.WriteLine("Correct!");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+                
             else
+            {
                 Console.WriteLine($"Wrong. The answer is: [{correctAnswer}]");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+                
         }
 
         public void DisplaySummary(GameSession session)
