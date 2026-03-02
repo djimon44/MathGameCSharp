@@ -36,6 +36,9 @@ while (true)
         case "4":
             game = GameType.Division;
             break;
+        case "r":
+            game = GameType.Random;
+            break;
         default:
             // Use a "sentinel" value to indicate something went wrong
             game = (GameType)(-1);

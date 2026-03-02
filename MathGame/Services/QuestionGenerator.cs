@@ -17,6 +17,8 @@ namespace MathGame.Services
                 return GenerateDivision();
             else if (game == GameType.Multiplication)
                 return GenerateMultiplication();
+            else if (game == GameType.Random)
+                return GenerateRandom();
             else
                 return GenerateStandart(game);
         }
@@ -42,6 +44,14 @@ namespace MathGame.Services
             int multiplicant = _random.Next(1, 21);
             int multiplier = _random.Next(1, 21);
             return new MathQuestion(multiplicant, multiplier, GameType.Multiplication);
+        }
+
+        // Generate Random Game
+        private MathQuestion GenerateRandom()
+        {
+            int randomEnum = _random.Next(0, 4);
+            GameType randomGame = (GameType)randomEnum;
+            return Generate(randomGame);
         }
     }
 }

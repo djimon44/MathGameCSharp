@@ -13,6 +13,7 @@ namespace MathGame.UI
         {
             Console.Clear();
             Console.WriteLine("=== MATH GAME ===");
+            Console.WriteLine("R. Random");
             Console.WriteLine("1. Addition");
             Console.WriteLine("2. Subtraction");
             Console.WriteLine("3. Multiplication");
@@ -21,7 +22,7 @@ namespace MathGame.UI
             Console.WriteLine("0. Exit");
             Console.Write("\nChoose an option: ");
 
-            return Console.ReadLine() ?? string.Empty;
+            return Console.ReadLine().Trim().ToLower() ?? string.Empty;
         }
 
         public void DisplayQuestion(MathQuestion question, int number, int total)
