@@ -68,6 +68,7 @@ namespace MathGame.UI
         {
             Console.Clear();
             Console.WriteLine($"\nGame over! You scored {session.Score}/{session.TotalQuestions}.");
+            Console.WriteLine($"Completion time: {session.Duration}");
             Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey();
         }
@@ -86,7 +87,7 @@ namespace MathGame.UI
                 foreach (GameSession session in history)
                 {
                     Console.WriteLine(
-                        $"{session.PlayedOn:HH:mm:ss} | {session.Game,-15} | {session.Score}/{session.TotalQuestions}");
+                        $"{session.PlayedOn:HH:mm:ss} | {session.Duration} | {session.Game,-15} | {session.Score}/{session.TotalQuestions}");
                 }
 
                 Console.WriteLine("\nPress any ket to return...");

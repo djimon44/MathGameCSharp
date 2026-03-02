@@ -9,7 +9,7 @@ namespace MathGame.Enums
         Addition,
         Subtraction,
         Multiplication,
-        Division
-           
+        Division,
+        Random
     }
 }

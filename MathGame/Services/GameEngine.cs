@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using MathGame.Enums;
 using MathGame.Interfaces;
@@ -26,6 +27,7 @@ namespace MathGame.Services
         public GameSession Play(GameType game)
         {
             int score = 0;
+            Stopwatch sw = Stopwatch.StartNew();
 
             for (int i = 0; i < TotalQuestions; i++)
             {
@@ -46,7 +48,9 @@ namespace MathGame.Services
                 }
             }
 
-            var session = new GameSession(game, score, TotalQuestions);
+            sw.Stop();
+
+            var session = new GameSession(game, score, TotalQuestions, sw.Elapsed);
             _ui.DisplaySummary(session);
             return session;
         }
