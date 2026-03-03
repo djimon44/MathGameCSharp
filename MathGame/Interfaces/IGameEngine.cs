@@ -1,5 +1,5 @@
-﻿using MathGame.Models;
-using MathGame.Enums;
+﻿using MathGame.Enums;
+using MathGame.Models;
 
 namespace MathGame.Interfaces;
 

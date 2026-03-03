@@ -18,7 +18,7 @@ public class ConsoleUI
         Console.WriteLine("0. Exit");
         Console.Write("\nChoose an option: ");
 
-        return Console.ReadLine().Trim().ToLower() ?? string.Empty;
+        return Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
     }
 
     public string ShowDifficultyMenu()
@@ -29,14 +29,14 @@ public class ConsoleUI
         Console.WriteLine("2. Medium");
         Console.WriteLine("3. Hard");
 
-        return Console.ReadLine().Trim().ToLower() ?? string.Empty;
+        return Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
     }
 
     public void DisplayQuestion(MathQuestion question, int number, int total, int timeLimit)
     {
         Console.Clear();
         Console.WriteLine($"=== {question.Game} Game ===");
-        Console.WriteLine($"[You have {timeLimit} seconds! ]");
+        Console.WriteLine($"[You have {timeLimit} seconds!]");
         Console.WriteLine($"\nQuestion [{number}/{total}]");
         Console.Write($"{question.OperandA} {OperationSymbol(question.Game)} {question.OperandB} = ");
     }
@@ -50,11 +50,10 @@ public class ConsoleUI
                 return answer;
             }
 
-            Console.WriteLine("Please enter a whole number: ");
+            Console.Write("Please enter a whole number: ");
         }
     }
 
-    // Default correctAsnwer is 0
     public void DisplayFeedback(bool correct, int correctAnswer = 0)
     {
         if (correct)
@@ -63,7 +62,6 @@ public class ConsoleUI
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
-
         else
         {
             Console.WriteLine($"Wrong/Out of time. The answer is: [{correctAnswer}]");

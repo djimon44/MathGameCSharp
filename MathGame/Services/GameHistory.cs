@@ -8,11 +8,11 @@ public class GameHistory
 
     public void Add(GameSession session)
     {
-        _sessions.Add(session); 
+        _sessions.Add(session);
     }
 
     public IReadOnlyList<GameSession> GetAll()
     {
-        return _sessions.AsReadOnly(); 
+        return _sessions.AsReadOnly();
     }
 }

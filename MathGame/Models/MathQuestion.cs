@@ -7,7 +7,7 @@ public class MathQuestion
     // Fields:
     public int OperandA { get; }
     public int OperandB { get; }
-    public GameType Game {  get; }
+    public GameType Game { get; }
     public int CorrectAnswer { get; }
     public int? PlayerAnswer { get; private set; } // ? means it can be null; private set means only changable within the class
 

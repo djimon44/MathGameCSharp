@@ -4,18 +4,16 @@ using MathGame.Interfaces;
 using MathGame.Models;
 using MathGame.UI;
 
-
 namespace MathGame.Services;
 
-public class GameEngine : IGameEngine 
+public class GameEngine : IGameEngine
 {
     private const int TotalQuestions = 5;
 
     private readonly QuestionGenerator _generator;
     private readonly ConsoleUI _ui;
 
-    // Dependecy injection 
-    public GameEngine(QuestionGenerator generator, ConsoleUI ui) 
+    public GameEngine(QuestionGenerator generator, ConsoleUI ui)
     {
         _generator = generator;
         _ui = ui;
@@ -67,7 +65,7 @@ public class GameEngine : IGameEngine
         return session;
     }
 
-    private DifficultySettings GetDifficultySettings(Difficulty difficulty)
+    private static DifficultySettings GetDifficultySettings(Difficulty difficulty)
     {
         switch (difficulty)
         {
