@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MathGame.Models;
+﻿using MathGame.Models;
 
-namespace MathGame.Services
+namespace MathGame.Services;
+
+public class GameHistory
 {
-    public class GameHistory
+    private readonly List<GameSession> _sessions = new();
+
+    public void Add(GameSession session)
     {
-        private readonly List<GameSession> _sessions = new();
+        _sessions.Add(session); 
+    }
 
-        public void Add(GameSession session)
-        {
-            _sessions.Add(session); 
-        }
-
-        public IReadOnlyList<GameSession> GetAll()
-        {
-            return _sessions.AsReadOnly(); 
-        }
+    public IReadOnlyList<GameSession> GetAll()
+    {
+        return _sessions.AsReadOnly(); 
     }
 }

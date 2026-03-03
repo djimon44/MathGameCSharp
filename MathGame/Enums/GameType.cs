@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace MathGame.Enums;
 
-namespace MathGame.Enums
+public enum GameType
 {
-    public enum GameType
-    {
-        Addition,
-        Subtraction,
-        Multiplication,
-        Division,
-        Random
-    }
+    Addition,
+    Subtraction,
+    Multiplication,
+    Division,
+    Random
 }
