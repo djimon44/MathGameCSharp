@@ -10,11 +10,11 @@ var engine = new GameEngine(generator, ui);
 
 while (true)
 {
-    string choice = ui.ShowMainMenu();
+    string choiceGame = ui.ShowMainMenu();
 
-    if (choice == "0") break;
+    if (choiceGame == "0") break;
 
-    if (choice == "5")
+    if (choiceGame == "5")
     {
         ui.DisplayHistory(history.GetAll());
         continue;
@@ -22,7 +22,7 @@ while (true)
 
     GameType game;
 
-    switch (choice)
+    switch (choiceGame)
     {
         case "1":
             game = GameType.Addition;
@@ -52,7 +52,28 @@ while (true)
         continue;
     }
 
-    GameSession session = engine.Play(game);
+    string choiceDifficulty = ui.ShowDifficultyMenu();
+    Difficulty difficulty;
+
+    switch (choiceDifficulty)
+    {
+        case "1": 
+            difficulty = Difficulty.Easy; 
+            break;
+        case "2":
+            difficulty = Difficulty.Medium;
+            break;
+        case "3":
+            difficulty= Difficulty.Hard;
+            break;
+
+        default:
+            Console.WriteLine("\nInvalid choice. Press any key to try again...");
+            Console.ReadKey();
+            continue;
+    }
+
+    GameSession session = engine.Play(game, difficulty);
     history.Add(session);
 }
 

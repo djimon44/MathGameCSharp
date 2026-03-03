@@ -8,6 +8,6 @@ namespace MathGame.Interfaces
 {
     public interface IGameEngine
     {
-        GameSession Play(GameType game);
+        GameSession Play(GameType game, Difficulty difficulty);
     }
 }

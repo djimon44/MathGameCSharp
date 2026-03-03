@@ -25,10 +25,22 @@ namespace MathGame.UI
             return Console.ReadLine().Trim().ToLower() ?? string.Empty;
         }
 
-        public void DisplayQuestion(MathQuestion question, int number, int total)
+        public string ShowDifficultyMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("=== PICK DIFFICULTY ===");
+            Console.WriteLine("1. Easy");
+            Console.WriteLine("2. Medium");
+            Console.WriteLine("3. Hard");
+
+            return Console.ReadLine().Trim().ToLower() ?? string.Empty;
+        }
+
+        public void DisplayQuestion(MathQuestion question, int number, int total, int timeLimit)
         {
             Console.Clear();
             Console.WriteLine($"=== {question.Game} Game ===");
+            Console.WriteLine($"[You have {timeLimit} seconds! ]");
             Console.WriteLine($"\nQuestion [{number}/{total}]");
             Console.Write($"{question.OperandA} {OperationSymbol(question.Game)} {question.OperandB} = ");
         }
@@ -58,7 +70,7 @@ namespace MathGame.UI
                 
             else
             {
-                Console.WriteLine($"Wrong. The answer is: [{correctAnswer}]");
+                Console.WriteLine($"Wrong/Out of time. The answer is: [{correctAnswer}]");
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
@@ -88,10 +100,10 @@ namespace MathGame.UI
                 foreach (GameSession session in history)
                 {
                     Console.WriteLine(
-                        $"{session.PlayedOn:HH:mm:ss} | {session.Duration} | {session.Game,-15} | {session.Score}/{session.TotalQuestions}");
+                        $"{session.PlayedOn:HH:mm:ss} | {session.Duration} | {session.Game,-15} Game | {session.Difficulty} | {session.Score}/{session.TotalQuestions}");
                 }
 
-                Console.WriteLine("\nPress any ket to return...");
+                Console.WriteLine("\nPress any key to return...");
                 Console.ReadKey();
             }
         }

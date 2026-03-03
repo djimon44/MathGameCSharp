@@ -14,15 +14,17 @@ namespace MathGame.Models
         public int Score { get; }
         public int TotalQuestions { get; }
         public TimeSpan Duration { get; } 
+        public Difficulty Difficulty { get; }
 
         // Constructor
-        public GameSession(GameType game, int score, int  totalQuestions, TimeSpan duration)
+        public GameSession(GameType game, int score, int  totalQuestions, TimeSpan duration, Difficulty difficulty)
         {
             PlayedOn = DateTime.Now;
             Game = game;
             Score = score;
             TotalQuestions = totalQuestions;
             Duration = duration;
+            Difficulty = difficulty;
         }
     }
 }

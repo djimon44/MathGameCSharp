@@ -9,6 +9,6 @@ namespace MathGame.Interfaces
 {
     public interface IQuestionGenerator
     {
-        MathQuestion Generate(GameType game);
+        MathQuestion Generate(GameType game, DifficultySettings difficulty);
     }
 }

@@ -24,35 +24,67 @@ namespace MathGame.Services
             _ui = ui;
         }
 
-        public GameSession Play(GameType game)
+        public GameSession Play(GameType game, Difficulty difficulty)
         {
             int score = 0;
-            Stopwatch sw = Stopwatch.StartNew();
+            DifficultySettings settings = GetDifficultySettings(difficulty);
+            Stopwatch totalSessionTime = Stopwatch.StartNew();
 
             for (int i = 0; i < TotalQuestions; i++)
             {
-                MathQuestion question = _generator.Generate(game);
+                MathQuestion question = _generator.Generate(game, settings);
 
-                _ui.DisplayQuestion(question, i + 1, TotalQuestions);
+                _ui.DisplayQuestion(question, i + 1, TotalQuestions, settings.TimeLimitSeconds);
+
+                Stopwatch questionTimer = Stopwatch.StartNew();
                 int playerAnswer = _ui.GetPlayerAnswer();
-                question.RecordAnswer(playerAnswer);
+                questionTimer.Stop();
 
-                if (question.isCorrect)
+                bool outOfTime = questionTimer.Elapsed.TotalSeconds > settings.TimeLimitSeconds;
+
+
+                if (outOfTime)
                 {
-                    score++;
-                    _ui.DisplayFeedback(correct: true);
+                    _ui.DisplayFeedback(correct: false, question.CorrectAnswer);
+                    question.RecordAnswer(int.MinValue); // flag as false answer
                 }
                 else
                 {
-                    _ui.DisplayFeedback(correct: false, question.CorrectAnswer);
+                    question.RecordAnswer(playerAnswer);
+
+                    if (question.isCorrect)
+                    {
+                        score++;
+                        _ui.DisplayFeedback(correct: true);
+                    }
+                    else
+                    {
+                        _ui.DisplayFeedback(correct: false, question.CorrectAnswer);
+                    }
                 }
             }
 
-            sw.Stop();
+            totalSessionTime.Stop();
 
-            var session = new GameSession(game, score, TotalQuestions, sw.Elapsed);
+            var session = new GameSession(game, score, TotalQuestions, totalSessionTime.Elapsed, difficulty);
             _ui.DisplaySummary(session);
             return session;
+        }
+
+        private DifficultySettings GetDifficultySettings(Difficulty difficulty)
+        {
+            switch (difficulty)
+            {
+                case Difficulty.Easy:
+                    return new DifficultySettings(10, 60);
+                case Difficulty.Medium:
+                    return new DifficultySettings(20, 90);
+                case Difficulty.Hard:
+                    return new DifficultySettings(35, 90);
+                
+                default:
+                    return new DifficultySettings(10, 60);
+            }
         }
     }
 }
